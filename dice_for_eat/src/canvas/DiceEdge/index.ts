@@ -1,0 +1,1 @@
+export { default as DiceEdge } from "./DiceEdge"
