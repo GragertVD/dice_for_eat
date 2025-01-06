@@ -1,31 +1,34 @@
 import { RigidBody } from "@react-three/rapier";
 
-const TableBox: React.FC = () => {
+type TableBoxProps = {
+  height?: number;
+  width?: number;
+}
+
+const TableBox: React.FC<TableBoxProps> = ({ height = 30, width = 20 }) => {
 
   return (
     <>
-      <RigidBody>
+      <RigidBody type="fixed" restitution={0.9}>
         <mesh position={[0, -1, 0]} rotation-x={-Math.PI / 2}>
-          <planeGeometry args={[10, 10]} />
+          <planeGeometry args={[width, height]} />
           <meshStandardMaterial color="green" />
         </mesh>
-      </RigidBody>
-      <RigidBody>
-        <mesh position={[5, 0, 0]}>
-          <boxGeometry args={[1, 1, 10]} />
+        <mesh position={[width / 2, 0, 0]}>
+          <boxGeometry args={[1, 10, height]} />
+          <meshStandardMaterial color="orange" />
+        </mesh>
+        <mesh position={[-width / 2, 0, 0]}>
+          <boxGeometry args={[1, 10, height]} />
+          <meshStandardMaterial color="red" />
+        </mesh>
+        <mesh position={[0, 0, -height / 2]}>
+          <boxGeometry args={[width, 10, 1]} />
           <meshStandardMaterial color="gray" />
         </mesh>
-        <mesh position={[-5, 0, 0]}>
-          <boxGeometry args={[1, 1, 10]} />
-          <meshStandardMaterial color="gray" />
-        </mesh>
-        <mesh position={[0, 0, -5]}>
-          <boxGeometry args={[10, 1, 1]} />
-          <meshStandardMaterial color="gray" />
-        </mesh>
-        <mesh position={[0, 0, 5]}>
-          <boxGeometry args={[10, 1, 1]} />
-          <meshStandardMaterial color="gray" />
+        <mesh position={[0, 0, height / 2]}>
+          <boxGeometry args={[width, 10, 1]} />
+          <meshStandardMaterial color="blue" />
         </mesh>
       </RigidBody>
     </>)

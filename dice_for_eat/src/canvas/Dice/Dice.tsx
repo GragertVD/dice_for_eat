@@ -1,36 +1,40 @@
-import { useFrame } from "@react-three/fiber";
-import { RapierRigidBody, RigidBody } from "@react-three/rapier";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
+import { DiceForMethodModel } from "../DiceForMethodModel";
+import useDiceWithPhysics from "../hooks/useDiceWithPhysics";
+import { Vector3 } from "three";
+import { DiceForCuisinesModel } from "../DiceForCuisinesModel";
 
-const Dice: React.FC = () => {
-    const playerRef = useRef < RapierRigidBody | null > ();
+const Dice = () => {
+    const { Component: Dice, setVelocity, setRotateVelocity } = useDiceWithPhysics(
+        {
+            componentModel: <DiceForMethodModel />,
+            rigidBodyProps: { position: [3, 0, 0] },
+            startVelocity: new Vector3(20, 0, -9),
+            startRotateVelocity: new Vector3(20, 20, 0)
+        }
+    );
+    const { Component: Dice2, setVelocity2, setRotateVelocity2 } = useDiceWithPhysics(
+        {
+            componentModel: <DiceForCuisinesModel />,
+            rigidBodyProps: { position: [0, 0, 0] },
+            // startVelocity: new Vector3(-24, 2, 12),
+            // startRotateVelocity: new Vector3(-20, -20, 0)
+        }
+    );
 
-    useFrame(() => {
-        if (!playerRef.current) return;
+    // useEffect(() => {
 
-        const velocity = playerRef.current.linvel();
-        const rotateVelocity = playerRef.current.angvel();
+    //     // setVelocity({ x: 0, y: 0.25, z: 0 });
+    //     // setRotateVelocity({ x: 2, y: 2, z: 2 });
+    // }, [setRotateVelocity, setVelocity])
 
-        playerRef.current.wakeUp();
-        playerRef.current.setLinvel({ x: velocity.x, y: velocity.y, z: velocity.z }, false);
-        playerRef.current.setAngvel({ x: rotateVelocity.x, y: rotateVelocity.y, z: rotateVelocity.z }, true);
-    });
-
-    useEffect(() => {
-        if (!playerRef.current) return;
-
-        playerRef.current.setLinvel({ x: -10, y: -10, z: 10 }, false);
-        playerRef.current.setAngvel({ x: 10, y: 10, z: 10 }, true);
-    }, [playerRef.current])
 
     return (
-        <RigidBody position={[10, 10, -10]} ref={playerRef} >
-            <mesh>
-                <dodecahedronGeometry args={[0.75]} />
-                <meshStandardMaterial />
-            </mesh>
-        </RigidBody>
+        <>
+            {Dice}
+            {Dice2}
+        </>
     )
-};
+}
 
 export default Dice;

@@ -20,7 +20,15 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Absolute import*/
+    "baseUrl": ".",
+    "paths": {
+        "src/*": [
+            "src/*"
+        ]
+    }
   },
   "include": ["src"]
 }
