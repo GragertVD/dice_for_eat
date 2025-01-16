@@ -1,0 +1,17 @@
+
+//Цвета
+$black: #000000;
+$white: #FFFFFF;
+$grey: #EBEBEB;
+$blue: #007AFF;
+
+//Шрифты
+@mixin setTextStyles($font-size, $line-height, $font-weight: 500) {
+    font-size: $font-size;
+    line-height: $line-height;
+    font-weight: $font-weight;
+}
+
+@mixin very-big {
+    @include setTextStyles(36px, 36px, 600);
+}

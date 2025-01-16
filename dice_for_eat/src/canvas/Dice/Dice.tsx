@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { DiceForMethodModel } from "../DiceForMethodModel";
-import useDiceWithPhysics from "../hooks/useDiceWithPhysics";
+import { DiceForMethodModel } from "./DiceForMethodModel";
+import useDiceWithPhysics from "./hooks/useDiceWithPhysics";
 import { Vector3 } from "three";
-import { DiceForCuisinesModel } from "../DiceForCuisinesModel";
+import { DiceForCuisinesModel } from "./DiceForCuisinesModel";
 
 const Dice = () => {
     const { Component: Dice, setVelocity, setRotateVelocity } = useDiceWithPhysics(

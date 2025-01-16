@@ -1,0 +1,22 @@
+@import 'src/styles';
+
+.button {
+  width: 100%;
+  height: 48px;
+
+  border-radius: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &_primary {
+    color: $white;
+    background-color: $blue;
+  }
+
+  &_secondary {
+    color: $black;
+    background-color: $grey;
+  }
+}
